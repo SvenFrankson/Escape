@@ -9,12 +9,10 @@ class Main {
         this.resize();
         let hemisphericLight = new BABYLON.HemisphericLight("Light", BABYLON.Vector3.Up(), this.scene);
         this.light = hemisphericLight;
-        let arcRotateCamera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 1, BABYLON.Vector3.Zero(), this.scene);
-        arcRotateCamera.setPosition(new BABYLON.Vector3(3, 2, -5));
-        arcRotateCamera.attachControl(this.canvas);
-        this.scene.activeCamera = arcRotateCamera;
-        BABYLON.MeshBuilder.CreateBox("Cube", { size: 1 }, this.scene).position.y = 0.5;
-        BABYLON.MeshBuilder.CreateGround("Ground", { width: 5, height: 5 }, this.scene);
+        let freeCamera = new BABYLON.FreeCamera("Camera", new BABYLON.Vector3(0, 1.6, 0), this.scene);
+        freeCamera.attachControl(this.canvas);
+        this.scene.activeCamera = freeCamera;
+        BABYLON.SceneLoader.ImportMesh("", "./data/level-1.babylon", "", this.scene);
     }
     animate() {
         this.engine.runRenderLoop(() => {
