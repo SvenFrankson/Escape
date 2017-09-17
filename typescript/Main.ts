@@ -56,6 +56,13 @@ class Main {
                         this.activables.set(ActivableBuilder.LeftBoxDoorActivable(meshes[i]));
                     } else if (meshes[i].name.startsWith("BoxDoorR")) {
                         this.activables.set(ActivableBuilder.RightBoxDoorActivable(meshes[i]));
+                    } else if (meshes[i].name.startsWith("Floor")) {
+                        let floorMaterial: BABYLON.StandardMaterial = new BABYLON.StandardMaterial("Floor", this.scene);
+                        floorMaterial.diffuseTexture = new BABYLON.Texture("./data/floor-diffuse.png", this.scene);
+                        floorMaterial.bumpTexture = new BABYLON.Texture("./data/floor-normal.png", this.scene);
+                        floorMaterial.ambientTexture = new BABYLON.Texture("./data/floor-ambient.png", this.scene);
+                        floorMaterial.specularColor.copyFromFloats(0.3, 0.3, 0.3);
+                        meshes[i].material = floorMaterial;
                     }
                 }
             }

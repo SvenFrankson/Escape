@@ -203,12 +203,12 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		mesh is an instance of :  Engine2.  Processing halted.
 	processing begun of mesh:  Floor
 		WARNING: No materials have been assigned: 
-		num positions      :  16
-		num normals        :  16
-		num uvs            :  0
+		num positions      :  496
+		num normals        :  496
+		num uvs            :  992
 		num uvs2           :  0
 		num colors         :  0
-		num indices        :  42
+		num indices        :  774
 	processing begun of mesh:  Ceiling
 		WARNING: No materials have been assigned: 
 		num positions      :  16
@@ -228,4 +228,4 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 ========= Writing of scene file started =========
 ========= Writing of scene file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 0.4374 secs
+elapsed time:  0 min, 0.4318 secs
