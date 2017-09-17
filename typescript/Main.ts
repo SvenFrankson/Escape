@@ -1,10 +1,12 @@
 class Main {
 
+    public static instance: Main;
     public canvas: HTMLCanvasElement;
     public engine: BABYLON.Engine;
     public scene: BABYLON.Scene;
     public light: BABYLON.Light;
     public camera: BABYLON.Camera;
+    public materials: Materials;
     public activables: ActivablesManager;
     private _aimed: Activable;
     private get aimed(): Activable {
@@ -21,6 +23,7 @@ class Main {
     }
 
     constructor(canvasElement: string) {
+        Main.instance = this;
         this.canvas = document.getElementById(canvasElement) as HTMLCanvasElement;
         this.engine = new BABYLON.Engine(this.canvas, true);
         BABYLON.Engine.ShadersRepository = "./shaders/";
@@ -42,6 +45,7 @@ class Main {
         this.camera = freeCamera;
 
         this.activables = new ActivablesManager();
+        this.materials = new Materials(this.scene);
 
         BABYLON.SceneLoader.ImportMesh(
             "",
@@ -59,18 +63,9 @@ class Main {
                     } else if (meshes[i].name.startsWith("BoxDoorR")) {
                         this.activables.set(ActivableBuilder.RightBoxDoorActivable(meshes[i]));
                     } else if (meshes[i].name.startsWith("Floor")) {
-                        let floorMaterial: BABYLON.StandardMaterial = new BABYLON.StandardMaterial("Floor", this.scene);
-                        floorMaterial.diffuseTexture = new BABYLON.Texture("./data/floor-diffuse.png", this.scene);
-                        floorMaterial.bumpTexture = new BABYLON.Texture("./data/floor-normal.png", this.scene);
-                        floorMaterial.ambientTexture = new BABYLON.Texture("./data/floor-ambient.png", this.scene);
-                        floorMaterial.specularColor.copyFromFloats(0.3, 0.3, 0.3);
-                        meshes[i].material = floorMaterial;
+                        meshes[i].material = this.materials.floor;
                     } else if (meshes[i].name.startsWith("Walls")) {
-                        let wallMaterial: BABYLON.StandardMaterial = new BABYLON.StandardMaterial("Wall", this.scene);
-                        wallMaterial.bumpTexture = new BABYLON.Texture("./data/wall-normal.png", this.scene);
-                        wallMaterial.ambientTexture = new BABYLON.Texture("./data/wall-ambient.png", this.scene);
-                        wallMaterial.specularColor.copyFromFloats(0.3, 0.3, 0.3);
-                        meshes[i].material = wallMaterial;
+                        meshes[i].material = this.materials.wall;
                     } else if (meshes[i].name.startsWith("Door")) {
                         let index: number = parseInt(meshes[i].name.substring(4));
                         doors[index] = meshes[i];

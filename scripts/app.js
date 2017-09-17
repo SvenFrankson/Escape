@@ -203,6 +203,7 @@ class Main {
         }
     }
     constructor(canvasElement) {
+        Main.instance = this;
         this.canvas = document.getElementById(canvasElement);
         this.engine = new BABYLON.Engine(this.canvas, true);
         BABYLON.Engine.ShadersRepository = "./shaders/";
@@ -220,6 +221,7 @@ class Main {
         freeCamera.minZ = 0.1;
         this.camera = freeCamera;
         this.activables = new ActivablesManager();
+        this.materials = new Materials(this.scene);
         BABYLON.SceneLoader.ImportMesh("", "./data/level-1.babylon", "", this.scene, (meshes, particleSystems, skeletons) => {
             let switches = [];
             let doors = [];
@@ -231,19 +233,10 @@ class Main {
                     this.activables.set(ActivableBuilder.RightBoxDoorActivable(meshes[i]));
                 }
                 else if (meshes[i].name.startsWith("Floor")) {
-                    let floorMaterial = new BABYLON.StandardMaterial("Floor", this.scene);
-                    floorMaterial.diffuseTexture = new BABYLON.Texture("./data/floor-diffuse.png", this.scene);
-                    floorMaterial.bumpTexture = new BABYLON.Texture("./data/floor-normal.png", this.scene);
-                    floorMaterial.ambientTexture = new BABYLON.Texture("./data/floor-ambient.png", this.scene);
-                    floorMaterial.specularColor.copyFromFloats(0.3, 0.3, 0.3);
-                    meshes[i].material = floorMaterial;
+                    meshes[i].material = this.materials.floor;
                 }
                 else if (meshes[i].name.startsWith("Walls")) {
-                    let wallMaterial = new BABYLON.StandardMaterial("Wall", this.scene);
-                    wallMaterial.bumpTexture = new BABYLON.Texture("./data/wall-normal.png", this.scene);
-                    wallMaterial.ambientTexture = new BABYLON.Texture("./data/wall-ambient.png", this.scene);
-                    wallMaterial.specularColor.copyFromFloats(0.3, 0.3, 0.3);
-                    meshes[i].material = wallMaterial;
+                    meshes[i].material = this.materials.wall;
                 }
                 else if (meshes[i].name.startsWith("Door")) {
                     let index = parseInt(meshes[i].name.substring(4));
@@ -319,3 +312,33 @@ window.addEventListener("DOMContentLoaded", () => {
     game.createScene();
     game.animate();
 });
+class Materials {
+    get wall() {
+        if (!this._wall) {
+            this._createWall();
+        }
+        return this._wall;
+    }
+    get floor() {
+        if (!this._floor) {
+            this._createFloor();
+        }
+        return this._floor;
+    }
+    constructor(scene) {
+        this._scene = scene;
+    }
+    _createWall() {
+        this._wall = new BABYLON.StandardMaterial("Wall", this._scene);
+        this._wall.bumpTexture = new BABYLON.Texture("./data/wall-normal.png", this._scene);
+        this._wall.ambientTexture = new BABYLON.Texture("./data/wall-ambient.png", this._scene);
+        this._wall.specularColor.copyFromFloats(0.3, 0.3, 0.3);
+    }
+    _createFloor() {
+        this._floor = new BABYLON.StandardMaterial("Floor", this._scene);
+        this._floor.diffuseTexture = new BABYLON.Texture("./data/floor-diffuse.png", this._scene);
+        this._floor.bumpTexture = new BABYLON.Texture("./data/floor-normal.png", this._scene);
+        this._floor.ambientTexture = new BABYLON.Texture("./data/floor-ambient.png", this._scene);
+        this._floor.specularColor.copyFromFloats(0.3, 0.3, 0.3);
+    }
+}
