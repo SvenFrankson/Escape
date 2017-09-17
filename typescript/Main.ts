@@ -66,6 +66,8 @@ class Main {
                         meshes[i].material = this.materials.floor;
                     } else if (meshes[i].name.startsWith("Walls")) {
                         meshes[i].material = this.materials.wall;
+                    } else if (meshes[i].name.startsWith("Skirting")) {
+                        meshes[i].material = this.materials.skirting;
                     } else if (meshes[i].name.startsWith("Door")) {
                         let index: number = parseInt(meshes[i].name.substring(4));
                         doors[index] = meshes[i];

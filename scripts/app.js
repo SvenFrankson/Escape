@@ -238,6 +238,9 @@ class Main {
                 else if (meshes[i].name.startsWith("Walls")) {
                     meshes[i].material = this.materials.wall;
                 }
+                else if (meshes[i].name.startsWith("Skirting")) {
+                    meshes[i].material = this.materials.skirting;
+                }
                 else if (meshes[i].name.startsWith("Door")) {
                     let index = parseInt(meshes[i].name.substring(4));
                     doors[index] = meshes[i];
@@ -325,6 +328,12 @@ class Materials {
         }
         return this._floor;
     }
+    get skirting() {
+        if (!this._skirting) {
+            this._createSkirting();
+        }
+        return this._skirting;
+    }
     constructor(scene) {
         this._scene = scene;
     }
@@ -340,5 +349,12 @@ class Materials {
         this._floor.bumpTexture = new BABYLON.Texture("./data/floor-normal.png", this._scene);
         this._floor.ambientTexture = new BABYLON.Texture("./data/floor-ambient.png", this._scene);
         this._floor.specularColor.copyFromFloats(0.3, 0.3, 0.3);
+    }
+    _createSkirting() {
+        this._skirting = new BABYLON.StandardMaterial("Skirting", this._scene);
+        this._skirting.diffuseTexture = new BABYLON.Texture("./data/skirting-diffuse.png", this._scene);
+        this._skirting.bumpTexture = new BABYLON.Texture("./data/skirting-normal.png", this._scene);
+        this._skirting.ambientTexture = new BABYLON.Texture("./data/skirting-ambient.png", this._scene);
+        this._skirting.specularColor.copyFromFloats(0.3, 0.3, 0.3);
     }
 }

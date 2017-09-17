@@ -17,6 +17,14 @@ class Materials {
         return this._floor;
     }
 
+    private _skirting: BABYLON.StandardMaterial;
+    public get skirting(): BABYLON.StandardMaterial {
+        if (!this._skirting) {
+            this._createSkirting();
+        }
+        return this._skirting;
+    }
+
     constructor(scene: BABYLON.Scene) {
         this._scene = scene;
     }
@@ -34,5 +42,13 @@ class Materials {
         this._floor.bumpTexture = new BABYLON.Texture("./data/floor-normal.png", this._scene);
         this._floor.ambientTexture = new BABYLON.Texture("./data/floor-ambient.png", this._scene);
         this._floor.specularColor.copyFromFloats(0.3, 0.3, 0.3);
+    }
+
+    private _createSkirting(): void {
+        this._skirting = new BABYLON.StandardMaterial("Skirting", this._scene);
+        this._skirting.diffuseTexture = new BABYLON.Texture("./data/skirting-diffuse.png", this._scene);
+        this._skirting.bumpTexture = new BABYLON.Texture("./data/skirting-normal.png", this._scene);
+        this._skirting.ambientTexture = new BABYLON.Texture("./data/skirting-ambient.png", this._scene);
+        this._skirting.specularColor.copyFromFloats(0.3, 0.3, 0.3);
     }
 }

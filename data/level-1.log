@@ -241,7 +241,15 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		num uvs2           :  0
 		num colors         :  0
 		num indices        :  204
+	processing begun of mesh:  Skirting
+		WARNING: No materials have been assigned: 
+		num positions      :  132
+		num normals        :  132
+		num uvs            :  264
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  264
 ========= Writing of scene file started =========
 ========= Writing of scene file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 0.6357 secs
+elapsed time:  0 min, 0.5809 secs
