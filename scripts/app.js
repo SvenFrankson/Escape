@@ -4,6 +4,14 @@ class Activable {
         this.target = target;
         console.log("Activable created for mesh " + target.name);
     }
+    Lit() {
+        this.target.outlineWidth = 0.01;
+        this.target.outlineColor = BABYLON.Color3.FromHexString("#42d1f4");
+        this.target.renderOutline = true;
+    }
+    Unlit() {
+        this.target.renderOutline = false;
+    }
 }
 class ActivableBuilder {
     static LeftBoxDoorActivable(target) {
@@ -146,6 +154,18 @@ class EscapeFreeCameraMouseInput {
 }
 BABYLON.CameraInputTypes["FreeCameraMouseInput"] = EscapeFreeCameraMouseInput;
 class Main {
+    get aimed() {
+        return this._aimed;
+    }
+    set aimed(a) {
+        if (this.aimed && a !== this.aimed) {
+            this.aimed.Unlit();
+        }
+        this._aimed = a;
+        if (this.aimed) {
+            this.aimed.Lit();
+        }
+    }
     constructor(canvasElement) {
         this.canvas = document.getElementById(canvasElement);
         this.engine = new BABYLON.Engine(this.canvas, true);
@@ -157,7 +177,8 @@ class Main {
         let hemisphericLight = new BABYLON.HemisphericLight("Light", BABYLON.Vector3.Up(), this.scene);
         this.light = hemisphericLight;
         let freeCamera = new BABYLON.FreeCamera("Camera", new BABYLON.Vector3(0, 1.6, 0), this.scene);
-        freeCamera.angularSensibility *= 2;
+        freeCamera.angularSensibility /= 2;
+        freeCamera.inertia = 0;
         freeCamera.inputs.add(new EscapeFreeCameraMouseInput());
         freeCamera.attachControl(this.canvas);
         freeCamera.minZ = 0.1;
@@ -180,15 +201,18 @@ class Main {
         };
         this.canvas.addEventListener("pointerup", firstClick);
         let testActivate = (eventData, eventState) => {
-            if (eventData.type === BABYLON.PointerEventTypes.POINTERDOWN) {
-                let pick = this.scene.pick(this.canvas.clientWidth / 2, this.canvas.clientHeight / 2);
-                if (pick.hit) {
-                    let activable = this.activables.getActivableForMesh(pick.pickedMesh);
-                    if (activable) {
-                        console.log("Activable activated for mesh " + pick.pickedMesh.name);
+            let pick = this.scene.pick(this.canvas.clientWidth / 2, this.canvas.clientHeight / 2);
+            if (pick.hit) {
+                let activable = this.activables.getActivableForMesh(pick.pickedMesh);
+                if (activable) {
+                    this.aimed = activable;
+                    if (eventData.type === BABYLON.PointerEventTypes._POINTERDOWN) {
                         activable.onActivate();
                         eventState.skipNextObservers = true;
                     }
+                }
+                else {
+                    this.aimed = undefined;
                 }
             }
         };
@@ -211,31 +235,3 @@ window.addEventListener("DOMContentLoaded", () => {
     game.createScene();
     game.animate();
 });
-class VRCamera extends BABYLON.FreeCamera {
-    constructor(name, position, scene) {
-        super(name, position, scene);
-        this.speed = 2;
-        this._forward = false;
-        this._pointerdown = () => {
-            this._forward = true;
-        };
-        this._pointerup = () => {
-            this._forward = false;
-        };
-        this._localZ = BABYLON.Vector3.Zero();
-        this._deltaPos = BABYLON.Vector3.Zero();
-        this._update = () => {
-            if (this._forward) {
-                this.getDirectionToRef(BABYLON.Axis.Z, this._localZ);
-                this._localZ.y = 0;
-                this._deltaPos.copyFrom(this._localZ);
-                this._deltaPos.scaleInPlace(this.speed * this.getEngine().getDeltaTime() / 1000);
-            }
-        };
-        scene.registerBeforeRender(this._update);
-    }
-    attachControl(canvas) {
-        canvas.addEventListener("pointerdown", this._pointerdown);
-        canvas.addEventListener("pointerup", this._pointerup);
-    }
-}

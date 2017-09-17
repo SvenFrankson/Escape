@@ -6,6 +6,19 @@ class Main {
     public light: BABYLON.Light;
     public camera: BABYLON.Camera;
     public activables: ActivablesManager;
+    private _aimed: Activable;
+    private get aimed(): Activable {
+        return this._aimed;
+    }
+    private set aimed(a: Activable) {
+        if (this.aimed && a !== this.aimed) {
+            this.aimed.Unlit();
+        }
+        this._aimed = a;
+        if (this.aimed) {
+            this.aimed.Lit();
+        }
+    }
 
     constructor(canvasElement: string) {
         this.canvas = document.getElementById(canvasElement) as HTMLCanvasElement;
@@ -21,7 +34,8 @@ class Main {
         this.light = hemisphericLight;
 
         let freeCamera: BABYLON.FreeCamera = new BABYLON.FreeCamera("Camera", new BABYLON.Vector3(0, 1.6, 0), this.scene);
-        freeCamera.angularSensibility *= 2;
+        freeCamera.angularSensibility /= 2;
+        freeCamera.inertia = 0;
         freeCamera.inputs.add(new EscapeFreeCameraMouseInput());
         freeCamera.attachControl(this.canvas);
         freeCamera.minZ = 0.1;
@@ -55,15 +69,18 @@ class Main {
         this.canvas.addEventListener("pointerup", firstClick);
 
         let testActivate = (eventData: BABYLON.PointerInfo, eventState: BABYLON.EventState) => {
-            if (eventData.type === BABYLON.PointerEventTypes.POINTERDOWN) {
-                let pick: BABYLON.PickingInfo = this.scene.pick(this.canvas.clientWidth / 2, this.canvas.clientHeight / 2);
-                if (pick.hit) {
-                    let activable: Activable = this.activables.getActivableForMesh(pick.pickedMesh);
-                    if (activable) {
-                        console.log("Activable activated for mesh " + pick.pickedMesh.name);
+            let pick: BABYLON.PickingInfo = this.scene.pick(this.canvas.clientWidth / 2, this.canvas.clientHeight / 2);
+            if (pick.hit) {
+                let activable: Activable = this.activables.getActivableForMesh(pick.pickedMesh);
+                if (activable) {
+                    this.aimed = activable;
+                    if (eventData.type === BABYLON.PointerEventTypes._POINTERDOWN) {
                         activable.onActivate();
                         eventState.skipNextObservers = true;
                     }
+                }
+                else {
+                    this.aimed = undefined;
                 }
             }
         }
