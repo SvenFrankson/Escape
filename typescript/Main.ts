@@ -5,6 +5,7 @@ class Main {
     public scene: BABYLON.Scene;
     public light: BABYLON.Light;
     public camera: BABYLON.Camera;
+    public activables: ActivablesManager;
 
     constructor(canvasElement: string) {
         this.canvas = document.getElementById(canvasElement) as HTMLCanvasElement;
@@ -20,15 +21,53 @@ class Main {
         this.light = hemisphericLight;
 
         let freeCamera: BABYLON.FreeCamera = new BABYLON.FreeCamera("Camera", new BABYLON.Vector3(0, 1.6, 0), this.scene);
+        freeCamera.angularSensibility *= 2;
+        freeCamera.inputs.add(new EscapeFreeCameraMouseInput());
         freeCamera.attachControl(this.canvas);
-        this.scene.activeCamera = freeCamera;
+        freeCamera.minZ = 0.1;
+        this.camera = freeCamera;
+
+        this.activables = new ActivablesManager();
 
         BABYLON.SceneLoader.ImportMesh(
             "",
             "./data/level-1.babylon",
             "",
-            this.scene
+            this.scene,
+            (
+                meshes, particleSystems, skeletons
+            ) => {
+                for (let i: number = 0; i < meshes.length; i++) {
+                    if (meshes[i].name.startsWith("BoxDoorL")) {
+                        this.activables.set(ActivableBuilder.LeftBoxDoorActivable(meshes[i]));
+                    } else if (meshes[i].name.startsWith("BoxDoorR")) {
+                        this.activables.set(ActivableBuilder.RightBoxDoorActivable(meshes[i]));
+                    }
+                }
+            }
         );
+
+        let firstClick = () => {
+            this.engine.switchFullscreen(true);
+            this.engine.resize();
+            this.canvas.removeEventListener("pointerup", firstClick);
+        }
+        this.canvas.addEventListener("pointerup", firstClick);
+
+        let testActivate = (eventData: BABYLON.PointerInfo, eventState: BABYLON.EventState) => {
+            if (eventData.type === BABYLON.PointerEventTypes.POINTERDOWN) {
+                let pick: BABYLON.PickingInfo = this.scene.pick(this.canvas.clientWidth / 2, this.canvas.clientHeight / 2);
+                if (pick.hit) {
+                    let activable: Activable = this.activables.getActivableForMesh(pick.pickedMesh);
+                    if (activable) {
+                        console.log("Activable activated for mesh " + pick.pickedMesh.name);
+                        activable.onActivate();
+                        eventState.skipNextObservers = true;
+                    }
+                }
+            }
+        }
+        this.scene.onPointerObservable.add(testActivate, undefined, true);
     }
 
     public animate(): void {

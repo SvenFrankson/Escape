@@ -7,6 +7,150 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		texture directory:  C:\Users\Sven\Documents\SvenFrankson\Escape\data\
 	Python World class constructor completed
 	WARNING: No active camera has been assigned, or is not in a currently selected Blender layer
+	processing begun of mesh:  Box2
+		WARNING: No materials have been assigned: 
+		num positions      :  68
+		num normals        :  68
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  354
+	processing begun of mesh:  BoxDoorL2
+		WARNING: No materials have been assigned: 
+		num positions      :  24
+		num normals        :  24
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  132
+	processing begun of mesh:  BoxDoorR2
+		WARNING: No materials have been assigned: 
+		num positions      :  24
+		num normals        :  24
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  132
+	processing begun of mesh:  BoxDoorR1
+		WARNING: No materials have been assigned: 
+		num positions      :  24
+		num normals        :  24
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  132
+	processing begun of mesh:  BoxDoorL1
+		WARNING: No materials have been assigned: 
+		num positions      :  24
+		num normals        :  24
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  132
+	processing begun of mesh:  Box1
+		WARNING: No materials have been assigned: 
+		num positions      :  68
+		num normals        :  68
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  354
+	processing begun of mesh:  Light.010
+		WARNING: No materials have been assigned: 
+		num positions      :  40
+		num normals        :  40
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  210
+	processing begun of mesh:  Light.009
+		WARNING: No materials have been assigned: 
+		num positions      :  40
+		num normals        :  40
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  210
+	processing begun of mesh:  Light.008
+		WARNING: No materials have been assigned: 
+		num positions      :  40
+		num normals        :  40
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  210
+	processing begun of mesh:  Light.007
+		WARNING: No materials have been assigned: 
+		num positions      :  40
+		num normals        :  40
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  210
+	processing begun of mesh:  Light.006
+		WARNING: No materials have been assigned: 
+		num positions      :  40
+		num normals        :  40
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  210
+	processing begun of mesh:  Light.005
+		WARNING: No materials have been assigned: 
+		num positions      :  40
+		num normals        :  40
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  210
+	processing begun of mesh:  Light.004
+		WARNING: No materials have been assigned: 
+		num positions      :  40
+		num normals        :  40
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  210
+	processing begun of mesh:  Light.003
+		WARNING: No materials have been assigned: 
+		num positions      :  40
+		num normals        :  40
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  210
+	processing begun of mesh:  Light.002
+		WARNING: No materials have been assigned: 
+		num positions      :  40
+		num normals        :  40
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  210
+	processing begun of mesh:  Light.001
+		WARNING: No materials have been assigned: 
+		num positions      :  40
+		num normals        :  40
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  210
+	processing begun of mesh:  SmallLight
+		WARNING: No materials have been assigned: 
+		num positions      :  40
+		num normals        :  40
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  210
+	processing begun of mesh:  Light
+		WARNING: No materials have been assigned: 
+		num positions      :  40
+		num normals        :  40
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  210
 	processing begun of mesh:  Door3
 		WARNING: No materials have been assigned: 
 		num positions      :  8
@@ -59,8 +203,8 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		num indices        :  24
 	processing begun of mesh:  Walls
 		WARNING: No materials have been assigned: 
-		num positions      :  64
-		num normals        :  64
+		num positions      :  120
+		num normals        :  120
 		num uvs            :  0
 		num uvs2           :  0
 		num colors         :  0
@@ -68,4 +212,4 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 ========= Writing of scene file started =========
 ========= Writing of scene file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 0.0378 secs
+elapsed time:  0 min, 0.1886 secs
