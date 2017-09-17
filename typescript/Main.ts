@@ -30,8 +30,8 @@ class Main {
         this.scene = new BABYLON.Scene(this.engine);
         this.resize();
 
-        let hemisphericLight: BABYLON.HemisphericLight = new BABYLON.HemisphericLight("Light", BABYLON.Vector3.Up(), this.scene);
-        this.light = hemisphericLight;
+        let pointLight: BABYLON.PointLight = new BABYLON.PointLight("Light", new BABYLON.Vector3(0, 1.9, 0), this.scene);
+        this.light = pointLight;
 
         let freeCamera: BABYLON.FreeCamera = new BABYLON.FreeCamera("Camera", new BABYLON.Vector3(0, 1.6, 0), this.scene);
         freeCamera.angularSensibility /= 2;
@@ -62,10 +62,15 @@ class Main {
                         let floorMaterial: BABYLON.StandardMaterial = new BABYLON.StandardMaterial("Floor", this.scene);
                         floorMaterial.diffuseTexture = new BABYLON.Texture("./data/floor-diffuse.png", this.scene);
                         floorMaterial.bumpTexture = new BABYLON.Texture("./data/floor-normal.png", this.scene);
-                        floorMaterial.bumpTexture.invertZ = true;
                         floorMaterial.ambientTexture = new BABYLON.Texture("./data/floor-ambient.png", this.scene);
                         floorMaterial.specularColor.copyFromFloats(0.3, 0.3, 0.3);
                         meshes[i].material = floorMaterial;
+                    } else if (meshes[i].name.startsWith("Walls")) {
+                        let wallMaterial: BABYLON.StandardMaterial = new BABYLON.StandardMaterial("Wall", this.scene);
+                        wallMaterial.bumpTexture = new BABYLON.Texture("./data/wall-normal.png", this.scene);
+                        wallMaterial.ambientTexture = new BABYLON.Texture("./data/wall-ambient.png", this.scene);
+                        wallMaterial.specularColor.copyFromFloats(0.3, 0.3, 0.3);
+                        meshes[i].material = wallMaterial;
                     } else if (meshes[i].name.startsWith("Door")) {
                         let index: number = parseInt(meshes[i].name.substring(4));
                         doors[index] = meshes[i];
