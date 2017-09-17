@@ -51,6 +51,8 @@ class Main {
             (
                 meshes, particleSystems, skeletons
             ) => {
+                let switches: BABYLON.AbstractMesh[] = [];
+                let doors: BABYLON.AbstractMesh[] = [];
                 for (let i: number = 0; i < meshes.length; i++) {
                     if (meshes[i].name.startsWith("BoxDoorL")) {
                         this.activables.set(ActivableBuilder.LeftBoxDoorActivable(meshes[i]));
@@ -60,9 +62,25 @@ class Main {
                         let floorMaterial: BABYLON.StandardMaterial = new BABYLON.StandardMaterial("Floor", this.scene);
                         floorMaterial.diffuseTexture = new BABYLON.Texture("./data/floor-diffuse.png", this.scene);
                         floorMaterial.bumpTexture = new BABYLON.Texture("./data/floor-normal.png", this.scene);
+                        floorMaterial.bumpTexture.invertZ = true;
                         floorMaterial.ambientTexture = new BABYLON.Texture("./data/floor-ambient.png", this.scene);
                         floorMaterial.specularColor.copyFromFloats(0.3, 0.3, 0.3);
                         meshes[i].material = floorMaterial;
+                    } else if (meshes[i].name.startsWith("Door")) {
+                        let index: number = parseInt(meshes[i].name.substring(4));
+                        doors[index] = meshes[i];
+                    } else if (meshes[i].name.startsWith("Switch")) {
+                        let index: number = parseInt(meshes[i].name.substring(6));
+                        switches[index] = meshes[i];
+                    }
+                }
+                let count: number = Math.min(switches.length, doors.length);
+                for (var i = 0; i < count; i++) {
+                    if (doors[i] && switches[i]) {
+                        let door = ActivableBuilder.SlidingDoorActivable(doors[i]);
+                        let doorSwitch = ActivableBuilder.DoorSwitchActivable(switches[i], door);
+                        this.activables.set(door);
+                        this.activables.set(doorSwitch);
                     }
                 }
             }

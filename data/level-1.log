@@ -7,6 +7,30 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		texture directory:  C:\Users\Sven\Documents\SvenFrankson\Escape\data\
 	Python World class constructor completed
 	WARNING: No active camera has been assigned, or is not in a currently selected Blender layer
+	processing begun of mesh:  Switch3
+		WARNING: No materials have been assigned: 
+		num positions      :  104
+		num normals        :  104
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  366
+	processing begun of mesh:  Switch2
+		WARNING: No materials have been assigned: 
+		num positions      :  104
+		num normals        :  104
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  366
+	processing begun of mesh:  Switch1
+		WARNING: No materials have been assigned: 
+		num positions      :  104
+		num normals        :  104
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  366
 	processing begun of mesh:  Shelf1.001
 		WARNING: No materials have been assigned: 
 		num positions      :  832
@@ -159,14 +183,6 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		num uvs2           :  0
 		num colors         :  0
 		num indices        :  210
-	processing begun of mesh:  Light
-		WARNING: No materials have been assigned: 
-		num positions      :  40
-		num normals        :  40
-		num uvs            :  0
-		num uvs2           :  0
-		num colors         :  0
-		num indices        :  210
 	processing begun of mesh:  Door3
 		WARNING: No materials have been assigned: 
 		num positions      :  8
@@ -228,4 +244,4 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 ========= Writing of scene file started =========
 ========= Writing of scene file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 0.4318 secs
+elapsed time:  0 min, 0.4739 secs

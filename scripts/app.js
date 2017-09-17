@@ -72,6 +72,42 @@ class ActivableBuilder {
         };
         return door;
     }
+    static SlidingDoorActivable(target) {
+        let door = new Door(target);
+        let direction = BABYLON.Vector3.Zero();
+        target.getDirectionToRef(BABYLON.Axis.X, direction);
+        direction.scaleInPlace(1 / 60);
+        door.openAnimation = () => {
+            let k = 0;
+            let step = () => {
+                k++;
+                door.target.position.addInPlace(direction);
+                if (k >= 60) {
+                    target.getScene().unregisterBeforeRender(step);
+                }
+            };
+            target.getScene().registerBeforeRender(step);
+        };
+        door.closeAnimation = () => {
+            let k = 0;
+            let step = () => {
+                k++;
+                door.target.position.addInPlace(direction.scale(-1));
+                if (k >= 60) {
+                    target.getScene().unregisterBeforeRender(step);
+                }
+            };
+            target.getScene().registerBeforeRender(step);
+        };
+        return door;
+    }
+    static DoorSwitchActivable(target, door) {
+        let doorSwitch = new Activable(target);
+        doorSwitch.onActivate = () => {
+            door.switch();
+        };
+        return doorSwitch;
+    }
 }
 class ActivablesManager {
     constructor() {
@@ -185,6 +221,8 @@ class Main {
         this.camera = freeCamera;
         this.activables = new ActivablesManager();
         BABYLON.SceneLoader.ImportMesh("", "./data/level-1.babylon", "", this.scene, (meshes, particleSystems, skeletons) => {
+            let switches = [];
+            let doors = [];
             for (let i = 0; i < meshes.length; i++) {
                 if (meshes[i].name.startsWith("BoxDoorL")) {
                     this.activables.set(ActivableBuilder.LeftBoxDoorActivable(meshes[i]));
@@ -196,9 +234,27 @@ class Main {
                     let floorMaterial = new BABYLON.StandardMaterial("Floor", this.scene);
                     floorMaterial.diffuseTexture = new BABYLON.Texture("./data/floor-diffuse.png", this.scene);
                     floorMaterial.bumpTexture = new BABYLON.Texture("./data/floor-normal.png", this.scene);
+                    floorMaterial.bumpTexture.invertZ = true;
                     floorMaterial.ambientTexture = new BABYLON.Texture("./data/floor-ambient.png", this.scene);
                     floorMaterial.specularColor.copyFromFloats(0.3, 0.3, 0.3);
                     meshes[i].material = floorMaterial;
+                }
+                else if (meshes[i].name.startsWith("Door")) {
+                    let index = parseInt(meshes[i].name.substring(4));
+                    doors[index] = meshes[i];
+                }
+                else if (meshes[i].name.startsWith("Switch")) {
+                    let index = parseInt(meshes[i].name.substring(6));
+                    switches[index] = meshes[i];
+                }
+            }
+            let count = Math.min(switches.length, doors.length);
+            for (var i = 0; i < count; i++) {
+                if (doors[i] && switches[i]) {
+                    let door = ActivableBuilder.SlidingDoorActivable(doors[i]);
+                    let doorSwitch = ActivableBuilder.DoorSwitchActivable(switches[i], door);
+                    this.activables.set(door);
+                    this.activables.set(doorSwitch);
                 }
             }
         });
