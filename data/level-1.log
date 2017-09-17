@@ -7,14 +7,28 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		texture directory:  C:\Users\Sven\Documents\SvenFrankson\Escape\data\
 	Python World class constructor completed
 	WARNING: No active camera has been assigned, or is not in a currently selected Blender layer
-	processing begun of mesh:  Switch3
+	processing begun of mesh:  Door2
 		WARNING: No materials have been assigned: 
-		num positions      :  104
-		num normals        :  104
+		num positions      :  296
+		num normals        :  296
 		num uvs            :  0
 		num uvs2           :  0
 		num colors         :  0
-		num indices        :  366
+		num indices        :  1512
+	processing begun of mesh:  Door1
+		mesh is an instance of :  Door2.  Processing halted.
+	processing begun of mesh:  Frame3
+		WARNING: No materials have been assigned: 
+		num positions      :  444
+		num normals        :  444
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  2436
+	processing begun of mesh:  Frame2
+		mesh is an instance of :  Frame3.  Processing halted.
+	processing begun of mesh:  Frame1
+		mesh is an instance of :  Frame3.  Processing halted.
 	processing begun of mesh:  Switch2
 		WARNING: No materials have been assigned: 
 		num positions      :  104
@@ -24,6 +38,14 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		num colors         :  0
 		num indices        :  366
 	processing begun of mesh:  Switch1
+		WARNING: No materials have been assigned: 
+		num positions      :  104
+		num normals        :  104
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  366
+	processing begun of mesh:  Switch0
 		WARNING: No materials have been assigned: 
 		num positions      :  104
 		num normals        :  104
@@ -183,30 +205,8 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		num uvs2           :  0
 		num colors         :  0
 		num indices        :  210
-	processing begun of mesh:  Door3
-		WARNING: No materials have been assigned: 
-		num positions      :  8
-		num normals        :  8
-		num uvs            :  0
-		num uvs2           :  0
-		num colors         :  0
-		num indices        :  36
-	processing begun of mesh:  Door2
-		WARNING: No materials have been assigned: 
-		num positions      :  8
-		num normals        :  8
-		num uvs            :  0
-		num uvs2           :  0
-		num colors         :  0
-		num indices        :  36
-	processing begun of mesh:  Door1
-		WARNING: No materials have been assigned: 
-		num positions      :  8
-		num normals        :  8
-		num uvs            :  0
-		num uvs2           :  0
-		num colors         :  0
-		num indices        :  36
+	processing begun of mesh:  Door0
+		mesh is an instance of :  Door2.  Processing halted.
 	processing begun of mesh:  Engine2
 		WARNING: No materials have been assigned: 
 		num positions      :  48
@@ -235,13 +235,13 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		num indices        :  24
 	processing begun of mesh:  Walls
 		WARNING: No materials have been assigned: 
-		num positions      :  120
-		num normals        :  120
+		num positions      :  96
+		num normals        :  96
 		num uvs            :  0
 		num uvs2           :  0
 		num colors         :  0
-		num indices        :  258
+		num indices        :  204
 ========= Writing of scene file started =========
 ========= Writing of scene file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 0.4739 secs
+elapsed time:  0 min, 0.5739 secs

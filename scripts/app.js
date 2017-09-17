@@ -242,10 +242,24 @@ class Main {
                 else if (meshes[i].name.startsWith("Door")) {
                     let index = parseInt(meshes[i].name.substring(4));
                     doors[index] = meshes[i];
+                    let m = meshes[i];
+                    if (m instanceof BABYLON.Mesh) {
+                        for (var j = 0; j < m.instances.length; j++) {
+                            index = parseInt(m.instances[j].name.substring(4));
+                            doors[index] = m.instances[j];
+                        }
+                    }
                 }
                 else if (meshes[i].name.startsWith("Switch")) {
                     let index = parseInt(meshes[i].name.substring(6));
                     switches[index] = meshes[i];
+                    let m = meshes[i];
+                    if (m instanceof BABYLON.Mesh) {
+                        for (var j = 0; j < m.instances.length; j++) {
+                            index = parseInt(m.instances[j].name.substring(6));
+                            switches[index] = m.instances[j];
+                        }
+                    }
                 }
             }
             let count = Math.min(switches.length, doors.length);
