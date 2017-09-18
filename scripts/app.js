@@ -250,6 +250,12 @@ class Main {
                 else if (meshes[i].name.startsWith("Vent")) {
                     meshes[i].material = this.materials.vent;
                 }
+                else if (meshes[i].name.startsWith("S-Crate-Top")) {
+                    meshes[i].material = this.materials.sCrateTop;
+                }
+                else if (meshes[i].name.startsWith("S-Crate-Bottom")) {
+                    meshes[i].material = this.materials.sCrateBottom;
+                }
                 else if (meshes[i].name.startsWith("Door")) {
                     let index = parseInt(meshes[i].name.substring(4));
                     doors[index] = meshes[i];
@@ -349,6 +355,18 @@ class Materials {
         }
         return this._vent;
     }
+    get sCrateTop() {
+        if (!this._sCrateTop) {
+            this._createSCrateTop();
+        }
+        return this._sCrateTop;
+    }
+    get sCrateBottom() {
+        if (!this._sCrateBottom) {
+            this._createSCrateBottom();
+        }
+        return this._sCrateBottom;
+    }
     constructor(scene) {
         this._scene = scene;
     }
@@ -378,5 +396,19 @@ class Materials {
         this._vent.bumpTexture = new BABYLON.Texture("./data/vent-normal.png", this._scene);
         this._vent.ambientTexture = new BABYLON.Texture("./data/vent-ambient.png", this._scene);
         this._vent.specularColor.copyFromFloats(0.3, 0.3, 0.3);
+    }
+    _createSCrateTop() {
+        this._sCrateTop = new BABYLON.StandardMaterial("S-Crate-Top", this._scene);
+        this._sCrateTop.diffuseColor = BABYLON.Color3.FromHexString("#f4b942");
+        this._sCrateTop.bumpTexture = new BABYLON.Texture("./data/s-crate-top-normal.png", this._scene);
+        this._sCrateTop.ambientTexture = new BABYLON.Texture("./data/s-crate-top-ambient.png", this._scene);
+        this._sCrateTop.specularColor.copyFromFloats(0.3, 0.3, 0.3);
+    }
+    _createSCrateBottom() {
+        this._sCrateBottom = new BABYLON.StandardMaterial("S-Crate-Bottom", this._scene);
+        this._sCrateBottom.diffuseColor = BABYLON.Color3.FromHexString("#f4b942");
+        this._sCrateBottom.bumpTexture = new BABYLON.Texture("./data/s-crate-bottom-normal.png", this._scene);
+        this._sCrateBottom.ambientTexture = new BABYLON.Texture("./data/s-crate-bottom-ambient.png", this._scene);
+        this._sCrateBottom.specularColor.copyFromFloats(0.3, 0.3, 0.3);
     }
 }

@@ -33,6 +33,22 @@ class Materials {
         return this._vent;
     }
 
+    private _sCrateTop: BABYLON.StandardMaterial;
+    public get sCrateTop(): BABYLON.StandardMaterial {
+        if (!this._sCrateTop) {
+            this._createSCrateTop();
+        }
+        return this._sCrateTop;
+    }
+
+    private _sCrateBottom: BABYLON.StandardMaterial;
+    public get sCrateBottom(): BABYLON.StandardMaterial {
+        if (!this._sCrateBottom) {
+            this._createSCrateBottom();
+        }
+        return this._sCrateBottom;
+    }
+
     constructor(scene: BABYLON.Scene) {
         this._scene = scene;
     }
@@ -66,5 +82,21 @@ class Materials {
         this._vent.bumpTexture = new BABYLON.Texture("./data/vent-normal.png", this._scene);
         this._vent.ambientTexture = new BABYLON.Texture("./data/vent-ambient.png", this._scene);
         this._vent.specularColor.copyFromFloats(0.3, 0.3, 0.3);
+    }
+
+    private _createSCrateTop(): void {
+        this._sCrateTop = new BABYLON.StandardMaterial("S-Crate-Top", this._scene);
+        this._sCrateTop.diffuseColor = BABYLON.Color3.FromHexString("#f4b942");
+        this._sCrateTop.bumpTexture = new BABYLON.Texture("./data/s-crate-top-normal.png", this._scene);
+        this._sCrateTop.ambientTexture = new BABYLON.Texture("./data/s-crate-top-ambient.png", this._scene);
+        this._sCrateTop.specularColor.copyFromFloats(0.3, 0.3, 0.3);
+    }
+
+    private _createSCrateBottom(): void {
+        this._sCrateBottom = new BABYLON.StandardMaterial("S-Crate-Bottom", this._scene);
+        this._sCrateBottom.diffuseColor = BABYLON.Color3.FromHexString("#f4b942");
+        this._sCrateBottom.bumpTexture = new BABYLON.Texture("./data/s-crate-bottom-normal.png", this._scene);
+        this._sCrateBottom.ambientTexture = new BABYLON.Texture("./data/s-crate-bottom-ambient.png", this._scene);
+        this._sCrateBottom.specularColor.copyFromFloats(0.3, 0.3, 0.3);
     }
 }

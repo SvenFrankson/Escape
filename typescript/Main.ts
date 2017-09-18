@@ -77,6 +77,10 @@ class Main {
                         meshes[i].material = this.materials.skirting;
                     } else if (meshes[i].name.startsWith("Vent")) {
                         meshes[i].material = this.materials.vent;
+                    } else if (meshes[i].name.startsWith("S-Crate-Top")) {
+                        meshes[i].material = this.materials.sCrateTop;
+                    } else if (meshes[i].name.startsWith("S-Crate-Bottom")) {
+                        meshes[i].material = this.materials.sCrateBottom;
                     } else if (meshes[i].name.startsWith("Door")) {
                         let index: number = parseInt(meshes[i].name.substring(4));
                         doors[index] = meshes[i];

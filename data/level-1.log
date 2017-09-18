@@ -7,6 +7,35 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		texture directory:  C:\Users\Sven\Documents\SvenFrankson\Escape\data\
 	Python World class constructor completed
 	WARNING: No active camera has been assigned, or is not in a currently selected Blender layer
+	processing begun of mesh:  S-Crate-Top3
+		WARNING: No materials have been assigned: 
+		num positions      :  235
+		num normals        :  235
+		num uvs            :  470
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  366
+		WARNING: # of 0 area faces found:  8
+	processing begun of mesh:  S-Crate-Bottom3
+		WARNING: No materials have been assigned: 
+		num positions      :  408
+		num normals        :  408
+		num uvs            :  816
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  630
+	processing begun of mesh:  S-Crate-Bottom2
+		mesh is an instance of :  S-Crate-Bottom3.  Processing halted.
+	processing begun of mesh:  S-Crate-Top2
+		mesh is an instance of :  S-Crate-Top3.  Processing halted.
+	processing begun of mesh:  S-Crate-Top1
+		mesh is an instance of :  S-Crate-Top3.  Processing halted.
+	processing begun of mesh:  S-Crate-Bottom1
+		mesh is an instance of :  S-Crate-Bottom3.  Processing halted.
+	processing begun of mesh:  S-Crate-Bottom0
+		mesh is an instance of :  S-Crate-Bottom3.  Processing halted.
+	processing begun of mesh:  S-Crate-Top0
+		mesh is an instance of :  S-Crate-Top3.  Processing halted.
 	processing begun of mesh:  WindowFrame1
 		WARNING: No materials have been assigned: 
 		num positions      :  288
@@ -257,6 +286,14 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		num uvs2           :  0
 		num colors         :  0
 		num indices        :  774
+	processing begun of mesh:  Ceiling
+		WARNING: No materials have been assigned: 
+		num positions      :  16
+		num normals        :  16
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  24
 	processing begun of mesh:  Walls
 		WARNING: No materials have been assigned: 
 		num positions      :  96
@@ -276,4 +313,4 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 ========= Writing of scene file started =========
 ========= Writing of scene file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 0.8512 secs
+elapsed time:  0 min, 0.8129 secs
