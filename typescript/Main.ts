@@ -4,7 +4,8 @@ class Main {
     public canvas: HTMLCanvasElement;
     public engine: BABYLON.Engine;
     public scene: BABYLON.Scene;
-    public light: BABYLON.Light;
+    public light1: BABYLON.Light;
+    public light2: BABYLON.Light;
     public camera: BABYLON.Camera;
     public materials: Materials;
     public activables: ActivablesManager;
@@ -33,8 +34,14 @@ class Main {
         this.scene = new BABYLON.Scene(this.engine);
         this.resize();
 
-        let pointLight: BABYLON.PointLight = new BABYLON.PointLight("Light", new BABYLON.Vector3(0, 1.9, 0), this.scene);
-        this.light = pointLight;
+        let pointLightRoom1: BABYLON.PointLight = new BABYLON.PointLight("Light", new BABYLON.Vector3(0, 2.1, 0), this.scene);
+        pointLightRoom1.intensity = 0.3;
+        pointLightRoom1.radius = 4;
+        this.light1 = pointLightRoom1;
+        let pointLightRoom2: BABYLON.PointLight = new BABYLON.PointLight("Light", new BABYLON.Vector3(-1.5, 2.6, -4.5), this.scene);
+        pointLightRoom2.intensity = 0.7;
+        pointLightRoom2.radius = 6;
+        this.light2 = pointLightRoom2;
 
         let freeCamera: BABYLON.FreeCamera = new BABYLON.FreeCamera("Camera", new BABYLON.Vector3(0, 1.6, 0), this.scene);
         freeCamera.angularSensibility /= 2;
@@ -68,6 +75,8 @@ class Main {
                         meshes[i].material = this.materials.wall;
                     } else if (meshes[i].name.startsWith("Skirting")) {
                         meshes[i].material = this.materials.skirting;
+                    } else if (meshes[i].name.startsWith("Vent")) {
+                        meshes[i].material = this.materials.vent;
                     } else if (meshes[i].name.startsWith("Door")) {
                         let index: number = parseInt(meshes[i].name.substring(4));
                         doors[index] = meshes[i];

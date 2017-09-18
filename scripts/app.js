@@ -211,8 +211,14 @@ class Main {
     createScene() {
         this.scene = new BABYLON.Scene(this.engine);
         this.resize();
-        let pointLight = new BABYLON.PointLight("Light", new BABYLON.Vector3(0, 1.9, 0), this.scene);
-        this.light = pointLight;
+        let pointLightRoom1 = new BABYLON.PointLight("Light", new BABYLON.Vector3(0, 2.1, 0), this.scene);
+        pointLightRoom1.intensity = 0.3;
+        pointLightRoom1.radius = 4;
+        this.light1 = pointLightRoom1;
+        let pointLightRoom2 = new BABYLON.PointLight("Light", new BABYLON.Vector3(-1.5, 2.6, -4.5), this.scene);
+        pointLightRoom2.intensity = 0.7;
+        pointLightRoom2.radius = 6;
+        this.light2 = pointLightRoom2;
         let freeCamera = new BABYLON.FreeCamera("Camera", new BABYLON.Vector3(0, 1.6, 0), this.scene);
         freeCamera.angularSensibility /= 2;
         freeCamera.inertia = 0;
@@ -240,6 +246,9 @@ class Main {
                 }
                 else if (meshes[i].name.startsWith("Skirting")) {
                     meshes[i].material = this.materials.skirting;
+                }
+                else if (meshes[i].name.startsWith("Vent")) {
+                    meshes[i].material = this.materials.vent;
                 }
                 else if (meshes[i].name.startsWith("Door")) {
                     let index = parseInt(meshes[i].name.substring(4));
@@ -334,6 +343,12 @@ class Materials {
         }
         return this._skirting;
     }
+    get vent() {
+        if (!this._vent) {
+            this._createVent();
+        }
+        return this._vent;
+    }
     constructor(scene) {
         this._scene = scene;
     }
@@ -356,5 +371,12 @@ class Materials {
         this._skirting.bumpTexture = new BABYLON.Texture("./data/skirting-normal.png", this._scene);
         this._skirting.ambientTexture = new BABYLON.Texture("./data/skirting-ambient.png", this._scene);
         this._skirting.specularColor.copyFromFloats(0.3, 0.3, 0.3);
+    }
+    _createVent() {
+        this._vent = new BABYLON.StandardMaterial("Vent", this._scene);
+        this._vent.diffuseColor.copyFromFloats(0.9, 0.9, 0.9);
+        this._vent.bumpTexture = new BABYLON.Texture("./data/vent-normal.png", this._scene);
+        this._vent.ambientTexture = new BABYLON.Texture("./data/vent-ambient.png", this._scene);
+        this._vent.specularColor.copyFromFloats(0.3, 0.3, 0.3);
     }
 }

@@ -25,6 +25,14 @@ class Materials {
         return this._skirting;
     }
 
+    private _vent: BABYLON.StandardMaterial;
+    public get vent(): BABYLON.StandardMaterial {
+        if (!this._vent) {
+            this._createVent();
+        }
+        return this._vent;
+    }
+
     constructor(scene: BABYLON.Scene) {
         this._scene = scene;
     }
@@ -50,5 +58,13 @@ class Materials {
         this._skirting.bumpTexture = new BABYLON.Texture("./data/skirting-normal.png", this._scene);
         this._skirting.ambientTexture = new BABYLON.Texture("./data/skirting-ambient.png", this._scene);
         this._skirting.specularColor.copyFromFloats(0.3, 0.3, 0.3);
+    }
+
+    private _createVent(): void {
+        this._vent = new BABYLON.StandardMaterial("Vent", this._scene);
+        this._vent.diffuseColor.copyFromFloats(0.9, 0.9, 0.9);
+        this._vent.bumpTexture = new BABYLON.Texture("./data/vent-normal.png", this._scene);
+        this._vent.ambientTexture = new BABYLON.Texture("./data/vent-ambient.png", this._scene);
+        this._vent.specularColor.copyFromFloats(0.3, 0.3, 0.3);
     }
 }
