@@ -286,14 +286,6 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		num uvs2           :  0
 		num colors         :  0
 		num indices        :  774
-	processing begun of mesh:  Ceiling
-		WARNING: No materials have been assigned: 
-		num positions      :  16
-		num normals        :  16
-		num uvs            :  0
-		num uvs2           :  0
-		num colors         :  0
-		num indices        :  24
 	processing begun of mesh:  Walls
 		WARNING: No materials have been assigned: 
 		num positions      :  96
@@ -310,7 +302,57 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		num uvs2           :  0
 		num colors         :  0
 		num indices        :  264
+	processing begun of mesh:  Centrifugator
+		WARNING: No materials have been assigned: 
+		num positions      :  349
+		num normals        :  349
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  1578
+	processing begun of mesh:  Desk
+		WARNING: No materials have been assigned: 
+		num positions      :  614
+		num normals        :  614
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  3648
+	processing begun of mesh:  Drawer0
+		WARNING: No materials have been assigned: 
+		num positions      :  264
+		num normals        :  264
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  1572
+	processing begun of mesh:  Drawer1
+		mesh is an instance of :  Drawer0.  Processing halted.
+	processing begun of mesh:  Tablet
+		WARNING: No materials have been assigned: 
+		num positions      :  68
+		num normals        :  68
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  396
+	processing begun of mesh:  Tubes
+		WARNING: No materials have been assigned: 
+		num positions      :  170
+		num normals        :  170
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  960
+	processing begun of mesh:  TubesHolder
+		WARNING: No materials have been assigned: 
+		num positions      :  404
+		num normals        :  404
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  2472
 ========= Writing of scene file started =========
 ========= Writing of scene file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 0.8129 secs
+elapsed time:  0 min, 1.2268 secs
