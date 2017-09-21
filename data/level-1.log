@@ -7,6 +7,32 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 		texture directory:  C:\Users\Sven\Documents\SvenFrankson\Escape\data\
 	Python World class constructor completed
 	WARNING: No active camera has been assigned, or is not in a currently selected Blender layer
+	processing begun of mesh:  CableBox.004
+		processing begun of Standard material:  BlackPlastic
+		num positions      :  88
+		num normals        :  88
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  516
+	processing begun of mesh:  CableBox.003
+		mesh is an instance of :  CableBox.004.  Processing halted.
+	processing begun of mesh:  CableBox.002
+		mesh is an instance of :  CableBox.004.  Processing halted.
+	processing begun of mesh:  CableBox.001
+		mesh is an instance of :  CableBox.004.  Processing halted.
+	processing begun of mesh:  Cable
+		processing begun of Standard material:  OrangePlastic
+		processing begun of Standard material:  GreyPlastic
+		processing begun of multimaterial:  level_1.Multimaterial#0
+		num positions      :  600
+		num normals        :  600
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  1800
+	processing begun of mesh:  CableBox
+		mesh is an instance of :  CableBox.004.  Processing halted.
 	processing begun of mesh:  S-Crate-Top3
 		WARNING: No materials have been assigned: 
 		num positions      :  235
@@ -355,4 +381,4 @@ Exporter version: 5.2.0, Blender version: 2.78 (sub 0)
 ========= Writing of scene file started =========
 ========= Writing of scene file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 1.2268 secs
+elapsed time:  0 min, 1.1986 secs
